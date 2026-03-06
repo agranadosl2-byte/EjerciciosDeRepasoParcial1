@@ -45,7 +45,8 @@ public class RepasoParcial1 {
 			parte3();
 			break;
 		case 4:
-
+			parte4();
+			break;
 		case 5:
 		}
 	}
@@ -443,6 +444,215 @@ public class RepasoParcial1 {
 			break;
 		}
 
+	}
+	
+	static void parte4() {
+		mayorMenorDiferencias();
+		tablaDivision();
+		cantidadDigitosPares();
+		determinarSiEsTriangular();
+		promedioNumerosNegativos();
+		menuPrincipal();
+	}
+	
+	static void mayorMenorDiferencias(){
+		double a = 0;
+		double b = 0;
+		boolean entradaValida = false;
+		
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Analisis Numerico ------");
+				
+				System.out.print("Ingrese el primer numero: ");
+				a = Double.parseDouble(leer.next());
+				
+				System.out.print("Ingrese el segundo numero: ");
+				b = Double.parseDouble(leer.next());
+				entradaValida = true;
+				
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... solo se permiten datos numericos. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+		
+		double mayor = Math.max(a, b);
+		double menor = Math.min(a, b);
+		double diferenciaAbsoluta = Math.abs(a - b);
+
+		System.out.println("\n--- Resultados del Analisis ---");
+		System.out.println("Numeros ingresados: " + a + " y " + b);
+		System.out.println("El numero MAYOR es: " + mayor);
+		System.out.println("El numero MENOR es: " + menor);
+		System.out.println("La diferencia absoluta entre ambos es: " + diferenciaAbsoluta);
+	}
+	
+	static void tablaDivision() {
+		int n = 0;
+		boolean entradaValida = false;
+
+		
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Tabla de Division ------");
+				System.out.print("Ingrese un numero entero: ");
+				n = Integer.parseInt(leer.next());
+				
+				if (n == 0) {
+					System.out.println("La division entre 0 no esta definida. Por favor, ingrese un numero distinto de 0.");
+				} else {
+					entradaValida = true;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Solo se permiten datos numericos enteros. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+
+		System.out.println("\n--- Tabla de Division del " + n + " ---");
+		
+		for (int i = 1; i <= 10; i++) {
+
+			double resultado = (double) n / i;
+			
+			System.out.println(n + " / " + i + " = " + resultado);
+		}
+	}
+	
+	static void cantidadDigitosPares() {
+		int num = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Contador de Digitos Pares ------");
+				System.out.print("Ingrese un numero entero: ");
+				num = Integer.parseInt(leer.next());
+				entradaValida = true;
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Solo se permiten datos numericos enteros. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+
+		int numProcesar = Math.abs(num);
+		int contadorPares = 0;
+
+		if (numProcesar == 0) {
+			contadorPares = 1; 
+		} else {
+			while (numProcesar > 0) {
+				int ultimoDigito = numProcesar % 10; 
+				
+			
+				if (ultimoDigito % 2 == 0) {
+					contadorPares++; 
+				}
+				
+				numProcesar /= 10; 
+			}
+		}
+
+		
+		System.out.println("\n--- Resultado ---");
+		System.out.println("El numero " + num + " contiene " + contadorPares + " digitos pares.");
+	}
+	
+	static void determinarSiEsTriangular() {
+		int n = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Verificador de Numero Triangular ------");
+				System.out.print("Ingrese un numero entero positivo: ");
+				n = Integer.parseInt(leer.next());
+				
+				if (n > 0) {
+					entradaValida = true;
+				} else {
+					System.out.println("Por favor, ingrese un numero mayor a 0.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Solo se permiten datos numericos enteros. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+
+		int suma = 0;
+		int k = 1;
+
+		while (suma < n) {
+			suma += k; 
+			
+			if (suma == n) {
+				break; 
+			}
+			k++; 
+		}
+
+			System.out.println("\n--- Resultado ---");
+		if (suma == n) {
+			System.out.println("El numero " + n + " Si es triangular");
+			System.out.println("Explicacion: La suma consecutiva del 1 al " + k + " da exactamente " + n + ".");
+		} else {
+			System.out.println("El numero " + n + " NO es triangular.");
+		}
+	}
+	
+	static void promedioNumerosNegativos() {
+		int n = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Promedio de Numeros Negativos ------");
+				System.out.print("Cuantos numeros desea ingresar?: ");
+				n = Integer.parseInt(leer.next());
+
+				if (n > 0) {
+					entradaValida = true;
+				} else {
+					System.out.println("Ingrese un numero mayor a 0.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Solo se permiten datos numericos enteros. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+
+		double sumaNegativos = 0;
+		int contadorNegativos = 0;
+
+		System.out.println("\n Ingrese los " + n + " numeros:");
+
+		for (int i = 1; i <= n; i++) {
+			try {
+				System.out.print("Numero " + i + ": ");
+				double numero = Double.parseDouble(leer.next());
+
+				if (numero < 0) {
+					sumaNegativos += numero;
+					contadorNegativos++;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Dato numerico invalido. Intente de nuevo para este numero.");
+				i--; 
+			}
+		}
+
+		System.out.println("\n--- Resultado ---");
+		
+		if (contadorNegativos > 0) {
+			
+			double promedio = sumaNegativos / contadorNegativos;
+			System.out.println("Cantidad de numeros negativos encontrados: " + contadorNegativos);
+			System.out.println("El promedio de los numeros negativos es: " + promedio);
+		} else {
+			
+			System.out.println("No hay negativos.");
+		}
 	}
 
 }
