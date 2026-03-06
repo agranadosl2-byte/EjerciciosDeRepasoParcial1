@@ -42,7 +42,8 @@ public class RepasoParcial1 {
 			parte2();
 			break;
 		case 3:
-
+			parte3();
+			break;
 		case 4:
 
 		case 5:
@@ -219,6 +220,7 @@ public class RepasoParcial1 {
 		determinarMultiplo();
 		divisibleTresNoDos();
 		clasificaionHorario();
+		menuPrincipal();
 	}
 
 	static void determinarMultiplo() {
@@ -288,7 +290,7 @@ public class RepasoParcial1 {
 		}
 
 	}
-	
+
 	static void clasificaionHorario() {
 		int hora = -1;
 		boolean entradaValida = false;
@@ -310,36 +312,137 @@ public class RepasoParcial1 {
 			}
 		} while (!entradaValida);
 		System.out.println("\n --- Resultado ---");
-	
-		if(hora >= 6 && hora <= 11) {
+
+		if (hora >= 6 && hora <= 11) {
 			System.out.println("La hora " + hora + ":00 correspone a la mañana");
-		}else if(hora >= 12 && hora <= 18) {
+		} else if (hora >= 12 && hora <= 18) {
 			System.out.println("La hora " + hora + ":00 correspone a la tarde");
-		}else {
+		} else {
 			System.out.println("La hora " + hora + ":00 correspone a la noche");
 		}
 	}
 
+	static void parte3() {
+		convertirANumeroRomano();
+		operacionesBasicas();
+		menuPrincipal();
+	}
+
+	static void convertirANumeroRomano() {
+		int numRomano = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Convertir Numero romano ------");
+				System.out.print("Ingrese un numero (1 - 5): ");
+				numRomano = Integer.parseInt(leer.next());
+
+				if (numRomano >= 1 && numRomano <= 5) {
+					entradaValida = true;
+				} else {
+					System.out.println("Ingrese un numero valido del 1 al 5");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... solo se permiten datos numericos enteros. Intente de nuevo");
+			}
+		} while (!entradaValida);
+
+		switch (numRomano) {
+		case 1:
+			System.out.println("El numero " + numRomano + " en numeros romanos es: I");
+			break;
+		case 2:
+			System.out.println("El numero " + numRomano + " en numeros romanos es: II");
+			break;
+		case 3:
+			System.out.println("El numero " + numRomano + " en numeros romanos es: III");
+			break;
+		case 4:
+			System.out.println("El numero " + numRomano + " en numeros romanos es: IV");
+			break;
+		case 5:
+			System.out.println("El numero " + numRomano + " en numeros romanos es: V");
+			break;
+		}
+
+	}
+
+	static void operacionesBasicas() {
+		int opcion = 0;
+		int a = 0;
+		int b = 0;
+		int resultado = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Operaciones Basicas ------");
+				System.out.println("1. Suma ");
+				System.out.println("2. Resta ");
+				System.out.println("3. Multiplicacion ");
+				System.out.print("Ingrese una opcion (1 - 3): ");
+				opcion = Integer.parseInt(leer.next());
+
+				if (opcion >= 1 && opcion <= 3) {
+					entradaValida = true;
+				} else {
+					System.out.println("Ingrese un numero valido del 1 al 3.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... solo se permiten datos numericos enteros. Intente de nuevo");
+			}
+		} while (!entradaValida);
+
+		switch (opcion) {
+		case 1:
+			try {
+				System.out.println("\n --- Suma ---");
+				System.out.print("Ingrese el primer numero: ");
+				a = Integer.parseInt(leer.next());
+				System.out.print("Ingrese el segundo numero: ");
+				b = Integer.parseInt(leer.next());
+				resultado = a + b;
+				System.out.println("El resultado de la suma de " + a + " + " + b + " = " + resultado);
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... solo se permiten datos numericos enteros. Intente de nuevo");
+				operacionesBasicas();
+			}
+			break;
+
+		case 2:
+			try {
+				System.out.println("\n --- Resta ---");
+				System.out.print("Ingrese el primer numero: ");
+				a = Integer.parseInt(leer.next());
+				System.out.print("Ingrese el segundo numero: ");
+				b = Integer.parseInt(leer.next());
+				resultado = a - b;
+				System.out.println("El resultado de la resta de " + a + " - " + b + " = " + resultado);
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... solo se permiten datos numericos enteros. Intente de nuevo");
+				operacionesBasicas();
+			}
+			break;
+
+		case 3:
+			try {
+				System.out.println("\n --- Multiplicacion ---");
+				System.out.print("Ingrese el primer numero: ");
+				a = Integer.parseInt(leer.next());
+				System.out.print("Ingrese el segundo numero: ");
+				b = Integer.parseInt(leer.next());
+				resultado = a * b;
+				System.out.println("El resultado de la multiplicacion de " + a + " x " + b + " = " + resultado);
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... solo se permiten datos numericos enteros. Intente de nuevo");
+				operacionesBasicas();
+			}
+			break;
+		}
+
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
