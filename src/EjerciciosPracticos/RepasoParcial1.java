@@ -39,7 +39,8 @@ public class RepasoParcial1 {
 			parte1();
 			break;
 		case 2:
-
+			parte2();
+			break;
 		case 3:
 
 		case 4:
@@ -54,6 +55,7 @@ public class RepasoParcial1 {
 		cantidadNumeros();
 		calcularPromedio();
 		sumaDigitos();
+		menuPrincipal();
 	}
 
 	static void ciclosYOperacionesNumericas() {
@@ -182,11 +184,10 @@ public class RepasoParcial1 {
 			System.out.println("No se encontraron numeros pares en el rango...");
 		}
 	}
-	
+
 	static void sumaDigitos() {
 		int num = 0;
 		boolean entradaValida = false;
-		int numProcesar = Math.abs(num);
 		int sumaTotal = 0;
 
 		do {
@@ -200,22 +201,126 @@ public class RepasoParcial1 {
 				System.out.println("ERROR... Solo se permiten datos numericos enteros. Intente de nuevo");
 			}
 		} while (!entradaValida);
-		
-		while(numProcesar > 0) {
+
+		int numProcesar = Math.abs(num);
+
+		while (numProcesar > 0) {
 			int ultimoDigito = numProcesar % 10;
 			sumaTotal += ultimoDigito;
 			numProcesar /= 10;
 		}
-		
+
 		System.out.println("--- Resultado ---");
 		System.out.println("El numero original es: " + num);
 		System.out.println("La suma de sus digitos es: " + sumaTotal);
 	}
 
+	static void parte2() {
+		determinarMultiplo();
+		divisibleTresNoDos();
+		clasificaionHorario();
+	}
+
+	static void determinarMultiplo() {
+		int num = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Calcular multiplo ------");
+				System.out.print("Ingrese un numero: ");
+				num = Integer.parseInt(leer.next());
+				entradaValida = true;
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... solo se permiten datos numericos enteros. Intente de nuevo");
+			}
+		} while (!entradaValida);
+
+		System.out.println("\n--- Resultado ---");
+
+		if (num % 7 == 0 && num % 11 == 0) {
+			System.out.println("El numero " + num + " es multiplo de 7 y 11");
+		} else if (num % 7 == 0) {
+			System.out.println("EL numero " + num + " es multiplo de 7");
+		} else if (num % 11 == 0) {
+			System.out.println("EL numero " + num + " es multiplo de 11");
+		} else {
+			System.out.println("El numero " + num + " no es multiplo de 7 ni 11");
+		}
+	}
+
+	static void divisibleTresNoDos() {
+		int num = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Numeros divisibles entre 3 pero no en 2 ------");
+				System.out.print("Ingrese un numero: ");
+				num = Integer.parseInt(leer.next());
+				if (num >= 1) {
+					entradaValida = true;
+				} else {
+					System.out.println("Ingrese un numero mayor o igual a 1");
+				}
+
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... solo se permiten datos numericos enteros. Intente de nuevo");
+			}
+		} while (!entradaValida);
+
+		System.out.println("\n --- Resultado ---");
+		System.out.println("Numeros entre 1 y " + num + " que cumple la condicion: ");
+
+		boolean encontroAlguno = false;
+
+		for (int i = 1; i <= num; i++) {
+			if (i % 3 == 0 && i % 2 != 0) {
+				System.out.print(i + " ");
+				encontroAlguno = true;
+			}
+		}
+		if (!encontroAlguno) {
+			System.out.println("No se encontraron numeros con caracteristicas de este rango...");
+
+		}
+
+	}
+	
+	static void clasificaionHorario() {
+		int hora = -1;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Clasificacion Horario ------");
+				System.out.print("Ingrese la hora (0-23)");
+				hora = Integer.parseInt(leer.next());
+
+				if (hora >= 0 && hora <= 23) {
+					entradaValida = true;
+				} else {
+					System.out.println("Ingresar una hora valida del 0 al 23...");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... solo se permiten datos numericos enteros. Intente de nuevo");
+			}
+		} while (!entradaValida);
+		System.out.println("\n --- Resultado ---");
+	
+		if(hora >= 6 && hora <= 11) {
+			System.out.println("La hora " + hora + ":00 correspone a la mañana");
+		}else if(hora >= 12 && hora <= 18) {
+			System.out.println("La hora " + hora + ":00 correspone a la tarde");
+		}else {
+			System.out.println("La hora " + hora + ":00 correspone a la noche");
+		}
+	}
+
 }
-
-
-
 
 
 
