@@ -667,6 +667,7 @@ public class RepasoParcial1 {
 		numeroInvertido();
 		determinarSumaNumerosParOImpar();
 		gradosCelciusAFahrenheit();
+		menuPrincipal();
 	}
 	
 	static void multiplosDeSeis() {
