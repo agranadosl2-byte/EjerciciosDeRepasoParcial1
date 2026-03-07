@@ -12,7 +12,6 @@ public class RepasoParcial1 {
 
 	}
 
-	// Parte 1
 
 	static void menuPrincipal() {
 		int opcion = 0;
@@ -25,14 +24,15 @@ public class RepasoParcial1 {
 				System.out.println("2. Parte Condiciones y divisibilidad.");
 				System.out.println("3. Parte Uso de switch.");
 				System.out.println("4. Parte Analisis numerico.");
-				System.out.println("5. Salir");
+				System.out.println("5. Parte Patrones y Transformaciones.");
+				System.out.println("6. Salir");
 				System.out.print("Ingrese una opcion (1-5): ");
 				opcion = Integer.parseInt(leer.next());
 			} catch (NumberFormatException e) {
 				System.out.println("ERROR... Solo se permiten datos numericos, intente de nuevo");
 				menuPrincipal();
 			}
-		} while (opcion < 1 || opcion >= 5);
+		} while (opcion < 1 || opcion >= 6);
 
 		switch (opcion) {
 		case 1:
@@ -48,6 +48,12 @@ public class RepasoParcial1 {
 			parte4();
 			break;
 		case 5:
+			parte5();
+			break;
+			
+		case 6: 
+			System.out.println("Saliendo del programa...");
+			System.exit(0);
 		}
 	}
 
@@ -653,6 +659,180 @@ public class RepasoParcial1 {
 			
 			System.out.println("No hay negativos.");
 		}
+	}
+	
+	static void parte5() {
+		multiplosDeSeis();
+		determinarSiEsPotenciaDe2();
+		numeroInvertido();
+		determinarSumaNumerosParOImpar();
+		gradosCelciusAFahrenheit();
+	}
+	
+	static void multiplosDeSeis() {
+		int n = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Multiplos de 6 ------");
+				System.out.print("Cuantos multiplos de 6 desea ver: ");
+				n = Integer.parseInt(leer.next());
+
+				if (n > 0) {
+					entradaValida = true;
+				} else {
+					System.out.println("Ingrese un numero mayor a 0.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Solo se permiten datos numericos enteros. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+
+		System.out.println("\n--- Los primeros " + n + " multiplos de 6 ---");
+
+		for (int i = 1; i <= n; i++) {
+			int multiplo = 6 * i;
+			System.out.print(multiplo + " ");
+		}
+	}
+	
+	static void determinarSiEsPotenciaDe2() {
+		int n = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Verificador de Potencia de 2 ------");
+				System.out.print("Ingrese un numero entero: ");
+				n = Integer.parseInt(leer.next());
+				entradaValida = true;
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Solo se permiten datos numericos enteros. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+
+		boolean esPotencia = true;
+		int numProcesar = n;
+
+		if (numProcesar <= 0) {
+			esPotencia = false; 
+		} else {
+			while (numProcesar > 1) {
+				if (numProcesar % 2 != 0) {
+					esPotencia = false;
+					break; 
+				}
+				numProcesar /= 2; 
+			}
+		}
+
+	
+		System.out.println("\n--- Resultado ---");
+		if (esPotencia) {
+			System.out.println("El numero " + n + " SI es una potencia de 2");
+		} else {
+			System.out.println("El numero " + n + " NO es una potencia de 2.");
+		}
+	}
+	
+	static void numeroInvertido() {
+		int n = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Inversor de Numeros ------");
+				System.out.print("Ingrese un numero entero: ");
+				n = Integer.parseInt(leer.next());
+				entradaValida = true;
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Solo se permiten datos numericos enteros. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+
+		
+		int numProcesar = Math.abs(n); 
+		int numeroInvertido = 0;
+
+		while (numProcesar > 0) {
+			int ultimoDigito = numProcesar % 10;                    
+			numeroInvertido = (numeroInvertido * 10) + ultimoDigito; 
+			numProcesar /= 10;                                       
+		}
+
+		
+		if (n < 0) {
+			numeroInvertido *= -1;
+		}
+
+		
+		System.out.println("\n--- Resultado ---");
+		System.out.println("El numero original es: " + n);
+		System.out.println("El numero invertido es: " + numeroInvertido);
+	}
+	
+	static void determinarSumaNumerosParOImpar() {
+		int n = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Suma del 1 al n: Par o Impar ------");
+				System.out.print("Ingrese un numero entero positivo n: ");
+				n = Integer.parseInt(leer.next());
+				
+				if (n > 0) {
+					entradaValida = true;
+				} else {
+					System.out.println("Ingrese un numero mayor a 0.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Solo se permiten datos numericos enteros. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+
+		long sumaTotal = 0; 
+		
+		for (int i = 1; i <= n; i++) {
+			sumaTotal += i;
+		}
+
+		System.out.println("\n--- Resultado ---");
+		System.out.println("La suma de los numeros del 1 al " + n + " es: " + sumaTotal);
+
+		if (sumaTotal % 2 == 0) {
+			System.out.println("Por lo tanto, el resultado es PAR.");
+		} else {
+			System.out.println("Por lo tanto, el resultado es IMPAR.");
+		}
+	}
+	
+	static void gradosCelciusAFahrenheit() {
+		double celsius = 0;
+		boolean entradaValida = false;
+
+		do {
+			try {
+				System.out.println("\n-----------------------------------------------------------------\n");
+				System.out.println("----- Conversor de Temperatura ------");
+				System.out.print("Ingrese la temperatura en grados Celsius: ");
+				celsius = Double.parseDouble(leer.next());
+				
+				entradaValida = true;
+			} catch (NumberFormatException e) {
+				System.out.println("ERROR... Solo se permiten datos numericos. Intente de nuevo.");
+			}
+		} while (!entradaValida);
+
+		double fahrenheit = (celsius * 1.8) + 32;
+
+		System.out.println("\n--- Resultado ---");
+		System.out.println(celsius + " grados Celsius equivalen a " + fahrenheit + " grados Fahrenheit.");
 	}
 
 }
